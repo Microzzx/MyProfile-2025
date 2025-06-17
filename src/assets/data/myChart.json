@@ -1,0 +1,28 @@
+{
+  "tracks": [
+    {
+      "index": "0",
+      "title": "Furret Theme",
+      "images": "../src/assets/data/track/images/0_furret_theme.png",
+      "url": "../src/assets/data/track/songs/0_furret_theme.mp3"
+    },
+    {
+      "index": "1",
+      "title": "Azalea Town OST",
+      "images": "../src/assets/data/track/images/song1.png",
+      "url": "../src/assets/data/track/songs/1_Azalea Town OST.mp3"
+    },
+    {
+      "index": "2",
+      "title": "Jubilife City",
+      "images": "../src/assets/data/track/images/song1.png",
+      "url": "../src/assets/data/track/songs/2_Jubilife City (Night)[Pokémon Diamond Pearl].mp3"
+    },
+    {
+      "index": "3",
+      "title": "Andrew Cupid",
+      "images": "../src/assets/data/track/images/song1.png",
+      "url": "../src/assets/data/track/songs/3_andrew_cupid.mp3"
+    }
+  ]
+}
