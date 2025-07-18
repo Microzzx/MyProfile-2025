@@ -1,8 +1,9 @@
+"use client";
 import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
-import counterReducer from "../features/counter/counterSlice";
-import musicPlayerReducer from "../features/musicPlayer/musicPlayerSlice";
+import counterReducer from "./slices/counterSlice";
+import musicPlayerReducer from "./slices/musicPlayerSlice";
 
 const reducer = {
   counterReducer,

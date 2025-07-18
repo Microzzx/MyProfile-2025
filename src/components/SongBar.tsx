@@ -1,9 +1,10 @@
+"use client";
 import { useState, useEffect } from "react";
 import Track from "./songbar_components/Track";
 import Control from "./songbar_components/Control";
 import Volume from "./songbar_components/Volume";
 import Player from "./songbar_components/Player";
-import data from "../assets/data/myChart.json";
+import data from "../../public/data/myChart.json";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setActiveSong,
@@ -11,7 +12,7 @@ import {
   playerSelector,
   nextSong,
   prevSong,
-} from "../redux/slices/playerSlice";
+} from "../redux/slices/musicPlayerSlice";
 import {
   MdOutlineArrowForwardIos,
   MdOutlineArrowBackIos,

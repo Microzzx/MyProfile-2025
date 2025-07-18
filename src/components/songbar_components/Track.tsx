@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 type TrackProps = {
@@ -17,7 +18,7 @@ const Track: React.FC<TrackProps> = ({ activeSong, isPlaying }) => {
       </div>
 
       <div className="hidden lg:flex flex-col justify-center items-center w-44">
-        <p className="songbar-text w-[100%] truncate text-center text-white font-bold text-xs mb-2">
+        <div className="songbar-text w-[100%] truncate text-center text-white font-bold text-xs mb-2">
           {isPlaying ? (
             <div className="wave">
               {"Now playing...".split("").map((char: string, i: number) =>
@@ -33,12 +34,12 @@ const Track: React.FC<TrackProps> = ({ activeSong, isPlaying }) => {
               )}
             </div>
           ) : (
-            "Paused"
+            <div>Paused</div>
           )}
-        </p>
-        <p className="songbar-text w-[100%] truncate text-center text-gray-300">
-          {activeSong.title}
-        </p>
+        </div>
+        <div className="songbar-text w-[100%] truncate text-center text-gray-300">
+          <p>{activeSong.title}</p>
+        </div>
       </div>
     </>
   );

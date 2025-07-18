@@ -1,9 +1,10 @@
+"use client";
 import { useState, useEffect } from "react";
 import { BsList, BsXLg } from "react-icons/bs";
 
 const NavBar: React.FC = () => {
   const [dropdownToggle, setDropdownToggle] = useState<boolean>(false);
-  const [scrollY, setScrollY] = useState<number>(window.scrollY);
+  const [scrollY, setScrollY] = useState<number>(0);
 
   const handleToggle = (): void => {
     setDropdownToggle(!dropdownToggle);
@@ -53,7 +54,7 @@ const NavBar: React.FC = () => {
   const buttonClassName = scrollY > 0 ? "white-icon" : "black-icon";
 
   return (
-    <nav className="navbar flex w-[100%] h-[100px] justify-center items-center sticky top-0 z-10">
+    <nav className="navbar sticky flex w-[100%] h-[100px] justify-center items-center">
       <div className="flex justify-start ms-[5%]">
         <a
           href="/#Profile"
