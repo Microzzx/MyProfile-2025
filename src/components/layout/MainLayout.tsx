@@ -10,7 +10,7 @@ export default function MainLayout({ children }: LayoutProps) {
       <NavBar />
       <VideoBox />
       <SongBar />
-      {children}
+      <div className="p-10">{children}</div>
     </>
   );
 }

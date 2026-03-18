@@ -1,9 +1,9 @@
-import { LayoutProps } from "@/types/types";
-const SectionBox = ({ children }: LayoutProps) => {
+import { SectionProps } from "@/types/types";
+const SectionBox = ({ children, id }: SectionProps) => {
   return (
-    <div className="bg-white opacity-50 rounded-2xl shadow-2xs p-6">
+    <section id={id} className="bg-white opacity-50 rounded-2xl shadow-2xs p-6">
       {children}
-    </div>
+    </section>
   );
 };
 export default SectionBox;

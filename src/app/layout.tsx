@@ -8,7 +8,7 @@ export const metadata = { title: "My Profile App" };
 
 export default function RootLayout({ children }: LayoutProps) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html>
       <body>
         <Providers>
           <MainLayout>{children}</MainLayout>
