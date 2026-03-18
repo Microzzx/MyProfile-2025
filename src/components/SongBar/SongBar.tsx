@@ -1,10 +1,12 @@
 "use client";
+import "../SongBar/SongBar.css";
+import "../../styles/waveText.css";
 import { useState, useEffect } from "react";
-import Track from "./songbar_components/Track";
-import Control from "./songbar_components/Control";
-import Volume from "./songbar_components/Volume";
-import Player from "./songbar_components/Player";
-import data from "../../public/data/myChart.json";
+import Track from "./SongbarComponents/Track";
+import Control from "./SongbarComponents/Control";
+import Volume from "./SongbarComponents/Volume";
+import Player from "./SongbarComponents/Player";
+import data from "../../../public/data/myChart.json";
 import { useDispatch, useSelector } from "react-redux";
 import {
   setActiveSong,
@@ -12,7 +14,7 @@ import {
   playerSelector,
   nextSong,
   prevSong,
-} from "../redux/slices/musicPlayerSlice";
+} from "../../redux/slices/musicPlayerSlice";
 import {
   MdOutlineArrowForwardIos,
   MdOutlineArrowBackIos,
@@ -75,7 +77,7 @@ const SongBar: React.FC = () => {
       <div
         className={`hidden lg:flex ${
           toggle ? "right-0 " : "right-[-480px]"
-        } items-center w-[500px] h-[100px] bg-black/30 rounded-l-lg smooth-transition bottom-10 fixed`}
+        } items-center w-[500px] h-[100px] bg-black/30 rounded-l-lg transition-all duration-400 ease-in-out bottom-10 fixed`}
       >
         <div className="flex items-center justify-center">
           {toggle ? (

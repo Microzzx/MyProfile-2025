@@ -2,7 +2,7 @@ type Props = {};
 
 const VideoBox = (props: Props) => {
   return (
-    <div className="flex flex-col absolute z-[-1] top-0 w-full">
+    <div className="fixed inset-0 -z-10 top-0 w-full">
       <video className="w-full" autoPlay loop muted playsInline>
         <source src="/videos/Sequence.mp4" type="video/mp4" />
       </video>

@@ -1,30 +1,17 @@
 import "../styles/globals.css";
 import { Providers } from "./provider";
-import { NavBar, VideoBox, SongBar } from "../components";
+import { LayoutProps } from "@/types/types";
+import MainLayout from "@/components/layout/MainLayout";
+import { ReactNode } from "react";
 
-export const metadata = {
-  title: "My Profile App",
-};
+export const metadata = { title: "My Profile App" };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: LayoutProps) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
         <Providers>
-          <div className="flex flex-col overflow-x-clip relative">
-            {/* <NavBar /> */}
-            <VideoBox />
-            <SongBar />
-            {/* <div className="smooth-transition">
-              <div className="flex flex-col w-full bg-[#2d2d39]">
-                {children}
-              </div>
-            </div> */}
-          </div>
+          <MainLayout>{children}</MainLayout>
         </Providers>
       </body>
     </html>

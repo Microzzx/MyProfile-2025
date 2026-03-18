@@ -1,18 +1,20 @@
 "use client";
+import SectionBox from "@/components/SectionBox";
+import "../styles/typingText.css";
 import Img1 from "../../public/images/landscape2.gif";
-import { useSelector, useDispatch } from "react-redux";
-import { counterSelector } from "../redux/slices/counterSlice";
+import { useSelector } from "react-redux";
+import { counterSelector } from "@/redux/slices/counterSlice";
 import { useState } from "react";
 
-export default function Home() {
+export default function HomePage() {
   const num1 = useSelector(counterSelector);
-  const [input1, setInput1] = useState("");
+  const [input1, setInput1] = useState<string>("");
   return (
-    <div className="flex flex-col mx-[5%] justify-start">
-      <section id="Profile">
-        <div className="section-div">
+    <div className="flex flex-col mx-[5%] justify-start m-10">
+      <SectionBox>
+        <div className="flex flex-row my-[150px]">
           <div className="flex flex-col">
-            <h1 className="text-[#f6c344] text-3xl font-bold mb-10">
+            <h1 className="text-[#f6c344] text-3xl font-bold mb-10 truncate">
               Welcome to My Profile :D
             </h1>
             <p className="text-gray-300 text-xl typing">
@@ -24,33 +26,34 @@ export default function Home() {
             <button onClick={() => console.log(input1)}>Send</button>
           </div>
         </div>
-      </section>
+      </SectionBox>
+      <section id="Profile"></section>
 
       <section id="Aboutme">
-        <div className="section-div">
-          <h1 className="text-[#f6c344] text-4xl font-bold">
+        <div className="flex flex-row my-[150px]">
+          <h1 className="text-[#f6c344] text-4xl font-bold truncate">
             My name is Janekit Prakittawornkul.
           </h1>
         </div>
       </section>
 
       <section id="Skills">
-        <div className="section-div">
-          <h1 className="text-[#f6c344] text-xl font-bold">Skills</h1>
+        <div className="flex flex-row my-[150px]">
+          <h1 className="text-[#f6c344] text-xl font-bold truncate">Skills</h1>
           <img src={Img1.src} alt="test_img" />
         </div>
       </section>
 
       <section id="Project">
-        <div className="section-div">
-          <h1 className="text-[#f6c344] text-xl font-bold">Project</h1>
+        <div className="flex flex-row my-[150px]">
+          <h1 className="text-[#f6c344] text-xl font-bold truncate">Project</h1>
           <img src={Img1.src} alt="test_img" />
         </div>
       </section>
 
       <section id="Contact">
-        <div className="section-div">
-          <h1 className="text-[#f6c344] text-xl font-bold">Contact</h1>
+        <div className="flex flex-row my-[150px]">
+          <h1 className="text-[#f6c344] text-xl font-bold truncate">Contact</h1>
           <img src={Img1.src} alt="test_img" />
         </div>
       </section>
