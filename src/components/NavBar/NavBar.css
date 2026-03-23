@@ -9,7 +9,6 @@
 }
 
 .navbar-scrolled {
-  font-weight: bold;
   color: #ffffff;
   transition: all 0.2s ease-in-out;
 }
@@ -29,10 +28,5 @@
     --tw-text-opacity: 1;
     font-size: x-large;
     color: rgb(246 195 68 / var(--tw-text-opacity));
-  }
-
-  .navbar-icon:hover {
-    transform: scale(1.5, 1.5);
-    color: rgb(246 195 68);
   }
 }

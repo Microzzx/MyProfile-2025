@@ -20,7 +20,9 @@ import {
   MdOutlineArrowBackIos,
 } from "react-icons/md";
 
-const SongBar: React.FC = () => {
+type Props = React.HTMLAttributes<HTMLElement>;
+
+const SongBar = ({ className, ...rest }: Props) => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setActiveSong(data));
@@ -75,9 +77,10 @@ const SongBar: React.FC = () => {
         onEnded={handleNextSong}
       />
       <div
-        className={`hidden lg:flex ${
+        className={`hidden lg:flex ${className} ${
           toggle ? "right-0 " : "right-[-480px]"
         } items-center w-[500px] h-[100px] bg-black/30 rounded-l-lg transition-all duration-400 ease-in-out bottom-10 fixed`}
+        {...rest}
       >
         <div className="flex items-center justify-center">
           {toggle ? (

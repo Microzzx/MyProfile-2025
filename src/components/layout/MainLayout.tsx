@@ -7,10 +7,10 @@ import SongBar from "../SongBar/SongBar";
 export default function MainLayout({ children }: LayoutProps) {
   return (
     <>
-      <NavBar />
-      <VideoBox />
-      <SongBar />
-      <div className="p-10">{children}</div>
+      <NavBar className="z-50" />
+      <SongBar className="z-40" />
+      <VideoBox className="z-0" />
+      <div className="relative p-10 pt-[120px] pb-20">{children}</div>
     </>
   );
 }
