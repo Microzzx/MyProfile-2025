@@ -2,19 +2,13 @@
 import "../SongBar/SongBar.css";
 import "../../styles/waveText.css";
 import { useState, useEffect } from "react";
+import { usePlayerStore } from "@/feature/player/store";
 import Track from "./SongbarComponents/Track";
 import Control from "./SongbarComponents/Control";
 import Volume from "./SongbarComponents/Volume";
 import Player from "./SongbarComponents/Player";
 import data from "../../../public/data/myChart.json";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  setActiveSong,
-  playPause,
-  playerSelector,
-  nextSong,
-  prevSong,
-} from "../../redux/slices/musicPlayerSlice";
+
 import {
   MdOutlineArrowForwardIos,
   MdOutlineArrowBackIos,
@@ -23,45 +17,52 @@ import {
 type Props = React.HTMLAttributes<HTMLElement>;
 
 const SongBar = ({ className, ...rest }: Props) => {
-  const dispatch = useDispatch();
+  const {
+    songList,
+    activeSong,
+    isPlaying,
+    toggle,
+    setSong,
+    setActive,
+    setPlaying,
+    setToggle,
+  } = usePlayerStore();
+
   useEffect(() => {
-    dispatch(setActiveSong(data));
+    setSong(data.tracks);
+    console.log("setSong called", data.tracks);
   }, []);
-
-  const { activeSong, isPlaying, currentSongs, currentIndex } =
-    useSelector(playerSelector);
-
-  const [toggle, setToggle] = useState(true);
-  const [volume, setVolume] = useState(0); //0.2
 
   //auto play when song changed
   useEffect(() => {
-    if (currentSongs.length) dispatch(playPause(true));
-  }, [currentIndex]);
+    if (songList) setPlaying(true);
+  }, [activeSong]);
 
   const handlePlayPause = () => {
-    if (isPlaying) {
-      dispatch(playPause(false));
-    } else {
-      dispatch(playPause(true));
-    }
+    setPlaying(!isPlaying);
   };
 
   const handleNextSong = () => {
-    dispatch(playPause(false));
-    const index: number = (currentIndex + 1) % currentSongs.length;
-    dispatch(nextSong(index));
+    if (!songList) {
+      console.log(songList);
+      console.log("nooo");
+      return;
+    }
+    setPlaying(false);
+    const index: number = (activeSong + 1) % songList.length;
+    setActive(index);
   };
 
   const handlePrevSong = () => {
-    dispatch(playPause(false));
+    if (!songList) return;
+    setPlaying(false);
     let index: number;
-    if (currentIndex === 0) {
-      index = currentSongs.length - 1;
+    if (activeSong === 0) {
+      index = songList.length - 1;
     } else {
-      index = currentIndex - 1;
+      index = activeSong - 1;
     }
-    dispatch(prevSong(index));
+    setActive(index);
   };
 
   const handleToggle = () => {
@@ -70,12 +71,7 @@ const SongBar = ({ className, ...rest }: Props) => {
 
   return (
     <>
-      <Player
-        activeSong={activeSong}
-        isPlaying={isPlaying}
-        volume={volume}
-        onEnded={handleNextSong}
-      />
+      <Player onEnded={handleNextSong} />
       <div
         className={`hidden lg:flex ${className} ${
           toggle ? "right-0 " : "right-[-480px]"
@@ -97,33 +93,23 @@ const SongBar = ({ className, ...rest }: Props) => {
         </div>
 
         <div className="flex items-center justify-center ms-5 gap-10">
-          <Track activeSong={activeSong} isPlaying={isPlaying} />
+          <Track />
           <div className="flex flex-col gap-3">
             <Control
-              isPlaying={isPlaying}
-              currentSongs={currentSongs}
               handlePlayPause={handlePlayPause}
               handleNextSong={handleNextSong}
               handlePrevSong={handlePrevSong}
             />
-            <Volume
-              volume={volume}
-              min="0"
-              max="1"
-              onChange={(event) => setVolume(parseFloat(event.target.value))}
-              setVolume={setVolume}
-            />
+            <Volume />
           </div>
         </div>
       </div>
 
       {/* small device */}
       <div className="flex lg:hidden items-center bottom-5 right-5 fixed">
-        <Track activeSong={activeSong} isPlaying={isPlaying} />
+        <Track />
         <div className="flex absolute items-center justify-center h-16 w-16">
           <Control
-            isPlaying={isPlaying}
-            currentSongs={currentSongs}
             handlePlayPause={handlePlayPause}
             handleNextSong={handleNextSong}
             handlePrevSong={handlePrevSong}

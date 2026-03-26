@@ -1,5 +1,4 @@
 import "../styles/globals.css";
-import { Providers } from "./provider";
 import { LayoutProps } from "@/types/types";
 import MainLayout from "@/components/layout/MainLayout";
 import { ReactNode } from "react";
@@ -10,9 +9,7 @@ export default function RootLayout({ children }: LayoutProps) {
   return (
     <html>
       <body>
-        <Providers>
-          <MainLayout>{children}</MainLayout>
-        </Providers>
+        <MainLayout>{children}</MainLayout>
       </body>
     </html>
   );

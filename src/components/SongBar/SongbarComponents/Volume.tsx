@@ -5,22 +5,18 @@ import {
   BsVolumeDownFill,
   BsFillVolumeMuteFill,
 } from "react-icons/bs";
+import { usePlayerStore } from "@/feature/player/store";
 
 type VolumeProps = {
-  volume: number;
-  min: string;
-  max: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  setVolume: (volume: number) => void;
+  min?: number;
+  max?: number;
 };
 
-const Volume: React.FC<VolumeProps> = ({
-  volume,
-  min,
-  max,
-  onChange,
-  setVolume,
-}) => {
+const Volume: React.FC<VolumeProps> = ({ min = 0, max = 1 }) => {
+  const { volume, setVolume } = usePlayerStore();
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setVolume(parseFloat(event.target.value));
+  };
   return (
     <div className="flex items-center">
       {volume <= 1 && volume > 0.5 && (
@@ -46,7 +42,7 @@ const Volume: React.FC<VolumeProps> = ({
         value={volume}
         min={min}
         max={max}
-        onChange={onChange}
+        onChange={handleChange}
         className="xl:w-20 lg:w-20 h-1.5 ml-2 accent-white "
       />
     </div>

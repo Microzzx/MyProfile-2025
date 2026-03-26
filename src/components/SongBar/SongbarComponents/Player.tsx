@@ -1,22 +1,14 @@
 "use client";
 import React, { useRef, useEffect } from "react";
-
+import { usePlayerStore } from "@/feature/player/store";
 type PlayerProps = {
-  activeSong: any;
-  isPlaying: boolean;
-  volume: number;
   onEnded: () => void;
 };
 
-const Player: React.FC<PlayerProps> = ({
-  activeSong,
-  isPlaying,
-  volume,
-  onEnded,
-}) => {
+const Player: React.FC<PlayerProps> = ({ onEnded }) => {
   const ref = useRef<HTMLAudioElement | null>(null);
-
-  if (ref.current && activeSong) {
+  const { songList, activeSong, isPlaying, volume } = usePlayerStore();
+  if (ref.current && songList) {
     if (isPlaying) {
       ref.current.play();
       // if (playPromise !== undefined) {
@@ -40,10 +32,17 @@ const Player: React.FC<PlayerProps> = ({
     }
   }, [volume]);
 
+  if (!songList) return null;
+  console.log(activeSong);
   return (
     <audio
       crossOrigin="anonymous"
-      src={activeSong.url}
+      onLoadedMetadata={() => {
+        if (ref.current) {
+          ref.current.volume = volume;
+        }
+      }}
+      src={songList[activeSong].url}
       ref={ref}
       loop={false}
       onEnded={onEnded}

@@ -3,11 +3,9 @@ import SectionBox from "@/components/SectionBox";
 import "../styles/typingText.css";
 import Img1 from "../../public/images/landscape2.gif";
 import { useSelector } from "react-redux";
-import { counterSelector } from "@/redux/slices/counterSlice";
 import { useState } from "react";
 
 export default function HomePage() {
-  const num1 = useSelector(counterSelector);
   const [input1, setInput1] = useState<string>("");
   return (
     <div className="flex flex-col gap-7">

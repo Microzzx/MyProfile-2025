@@ -1,12 +1,10 @@
 "use client";
 import React from "react";
+import { usePlayerStore } from "@/feature/player/store";
 
-type TrackProps = {
-  activeSong: any;
-  isPlaying: boolean;
-};
-
-const Track: React.FC<TrackProps> = ({ activeSong, isPlaying }) => {
+const Track = () => {
+  const { songList, activeSong, isPlaying } = usePlayerStore();
+  if (!songList) return null;
   return (
     <>
       <div
@@ -14,7 +12,11 @@ const Track: React.FC<TrackProps> = ({ activeSong, isPlaying }) => {
           isPlaying ? "animate-[spin_3s_linear_infinite] h-16 w-16" : ""
         } block h-16 w-16`}
       >
-        <img src={activeSong.images} alt="cover art" className="rounded-full" />
+        <img
+          src={songList[activeSong].image}
+          alt="cover art"
+          className="rounded-full"
+        />
       </div>
 
       <div className="hidden lg:flex flex-col justify-center items-center w-44">
@@ -30,7 +32,7 @@ const Track: React.FC<TrackProps> = ({ activeSong, isPlaying }) => {
                   <span style={{ "--i": i }} key={i}>
                     {char}
                   </span>
-                )
+                ),
               )}
             </div>
           ) : (
@@ -38,7 +40,7 @@ const Track: React.FC<TrackProps> = ({ activeSong, isPlaying }) => {
           )}
         </div>
         <div className="songbar-text w-[100%] truncate text-center text-gray-300">
-          <p>{activeSong.title}</p>
+          <p>{songList[activeSong].title}</p>
         </div>
       </div>
     </>
