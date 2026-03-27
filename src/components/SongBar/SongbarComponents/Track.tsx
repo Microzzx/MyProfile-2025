@@ -1,46 +1,30 @@
 "use client";
 import React from "react";
 import { usePlayerStore } from "@/feature/player/store";
+import WaveText from "@/components/WaveText";
 
 const Track = () => {
   const { songList, activeSong, isPlaying } = usePlayerStore();
-  if (!songList) return null;
+  if (!songList || !songList[activeSong]) return null;
+  const currentTrack = songList[activeSong];
   return (
     <>
       <div
-        className={`${
-          isPlaying ? "animate-[spin_3s_linear_infinite] h-16 w-16" : ""
-        } block h-16 w-16`}
+        className={`h-16 w-16 rounded-full overflow-hidden flex items-center justify-center animate-[spin_6s_linear_infinite] ${!isPlaying ? "[animation-play-state:paused]" : ""}`}
       >
         <img
-          src={songList[activeSong].image}
-          alt="cover art"
+          src={currentTrack.image}
+          alt={currentTrack.title}
           className="rounded-full"
         />
       </div>
 
       <div className="hidden lg:flex flex-col justify-center items-center w-44">
         <div className="songbar-text w-[100%] truncate text-center text-white font-bold text-xs mb-2">
-          {isPlaying ? (
-            <div className="wave">
-              {"Now playing...".split("").map((char: string, i: number) =>
-                char === " " ? (
-                  <span style={{ "--i": i }} key={i}>
-                    &nbsp;
-                  </span>
-                ) : (
-                  <span style={{ "--i": i }} key={i}>
-                    {char}
-                  </span>
-                ),
-              )}
-            </div>
-          ) : (
-            <div>Paused</div>
-          )}
+          {isPlaying ? <WaveText text="Now playing..." /> : <span>Paused</span>}
         </div>
         <div className="songbar-text w-[100%] truncate text-center text-gray-300">
-          <p>{songList[activeSong].title}</p>
+          <p>{currentTrack.title}</p>
         </div>
       </div>
     </>

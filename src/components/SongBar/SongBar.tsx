@@ -99,8 +99,8 @@ const SongBar = ({ className, ...rest }: Props) => {
               handlePrevSong={handlePrevSong}
             />
             <Volume />
-            <Progress />
           </div>
+          <Progress />
         </div>
       </div>
 
