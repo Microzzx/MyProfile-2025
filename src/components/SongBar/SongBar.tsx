@@ -1,13 +1,11 @@
 "use client";
-import "../SongBar/SongBar.css";
-import "../../styles/waveText.css";
+import styles from "@/styles/songBar.module.css";
 import { useState, useEffect } from "react";
 import { usePlayerStore } from "@/feature/player/store";
 import Track from "./SongbarComponents/Track";
 import Control from "./SongbarComponents/Control";
 import Volume from "./SongbarComponents/Volume";
 import Player from "./SongbarComponents/Player";
-import Progress from "./SongbarComponents/Progress";
 import data from "../../../public/data/myChart.json";
 
 import {
@@ -79,12 +77,12 @@ const SongBar = ({ className, ...rest }: Props) => {
         <div className="flex items-center justify-center">
           {toggle ? (
             <MdOutlineArrowForwardIos
-              className="cursor-pointer songbar-icon-1"
+              className={`cursor-pointer ${styles["songbar-icon-1"]}`}
               onClick={handleToggle}
             />
           ) : (
             <MdOutlineArrowBackIos
-              className="cursor-pointer songbar-icon-1"
+              className={`cursor-pointer ${styles["songbar-icon-1"]}`}
               onClick={handleToggle}
             />
           )}
@@ -100,7 +98,6 @@ const SongBar = ({ className, ...rest }: Props) => {
             />
             <Volume />
           </div>
-          <Progress />
         </div>
       </div>
 

@@ -4,7 +4,7 @@
 
 .wave span {
   display: inline-block;
-  animation: wave-bounce 2s ease-in-out infinite;
+  animation: wave-bounce 3s ease-in-out infinite;
   animation-delay: calc(0.1s * var(--i));
 }
 

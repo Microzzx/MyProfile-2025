@@ -1,9 +1,11 @@
+import styles from "./WaveText.module.css";
+
 type WaveTextProps = {
   text: string;
 };
 
 const WaveText = ({ text }: WaveTextProps) => (
-  <div className="wave">
+  <div className={`${styles.wave}`}>
     {text.split("").map((char, i) => (
       <span key={i} style={{ "--i": i } as React.CSSProperties}>
         {char === " " ? "\u00A0" : char}

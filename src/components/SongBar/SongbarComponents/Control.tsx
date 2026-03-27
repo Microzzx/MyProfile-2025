@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import styles from "@/styles/songBar.module.css";
 import { MdSkipNext, MdSkipPrevious } from "react-icons/md";
 import { BsFillPauseFill, BsFillPlayFill } from "react-icons/bs";
 import { usePlayerStore } from "@/feature/player/store";
@@ -23,7 +24,7 @@ const Control: React.FC<ControlProps> = ({
           {songList?.length && (
             <MdSkipPrevious
               color="#FFF"
-              className="cursor-pointer songbar-icon-1"
+              className={`cursor-pointer ${styles["songbar-icon-1"]}`}
               onClick={handlePrevSong}
             />
           )}
@@ -32,20 +33,20 @@ const Control: React.FC<ControlProps> = ({
           <BsFillPauseFill
             color="#FFF"
             onClick={handlePlayPause}
-            className="cursor-pointer songbar-icon-2"
+            className={`cursor-pointer ${styles["songbar-icon-2"]}`}
           />
         ) : (
           <BsFillPlayFill
             color="#FFF"
             onClick={handlePlayPause}
-            className="cursor-pointer songbar-icon-2"
+            className={`cursor-pointer ${styles["songbar-icon-2"]}`}
           />
         )}
         <div className="hidden lg:flex">
           {songList?.length && (
             <MdSkipNext
               color="#FFF"
-              className="cursor-pointer songbar-icon-1"
+              className={`cursor-pointer ${styles["songbar-icon-1"]}`}
               onClick={handleNextSong}
             />
           )}

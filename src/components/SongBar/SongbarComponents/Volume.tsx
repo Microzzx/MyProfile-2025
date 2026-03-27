@@ -43,7 +43,7 @@ const Volume: React.FC<VolumeProps> = ({ min = 0, max = 1 }) => {
         min={min}
         max={max}
         onChange={handleChange}
-        className="xl:w-20 lg:w-20 h-1.5 ml-2 accent-white "
+        className="xl:w-20 lg:w-20 h-1.5 ml-2 accent-white"
       />
     </div>
   );

@@ -1,6 +1,7 @@
 "use client";
 import React, { ChangeEvent } from "react";
 import { usePlayerStore } from "@/feature/player/store";
+import styles from "@/styles/songBar.module.css";
 
 const Progress = () => {
   const { currentTime, duration, isSeeking, setCurrentTime, setSeeking } =
@@ -33,9 +34,11 @@ const Progress = () => {
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onChange={handleChange}
-        className="xl:w-20 lg:w-20 h-1.5 ml-2 accent-white "
+        className="w-64 h-1.5 ml-2 accent-white"
       />
-      {formatTime(currentTime)} / {formatTime(duration)}
+      <span className="text-xs text-gray-400 w-10">
+        {formatTime(currentTime)} / {formatTime(duration)}
+      </span>
     </div>
   );
 };

@@ -1,8 +1,9 @@
 "use client";
 import React from "react";
 import { usePlayerStore } from "@/feature/player/store";
-import WaveText from "@/components/WaveText";
-
+import styles from "@/styles/songBar.module.css";
+import WaveText from "@/components/WaveText/WaveText";
+import Progress from "./Progress";
 const Track = () => {
   const { songList, activeSong, isPlaying } = usePlayerStore();
   if (!songList || !songList[activeSong]) return null;
@@ -10,7 +11,8 @@ const Track = () => {
   return (
     <>
       <div
-        className={`h-16 w-16 rounded-full overflow-hidden flex items-center justify-center animate-[spin_6s_linear_infinite] ${!isPlaying ? "[animation-play-state:paused]" : ""}`}
+        className={`h-16 w-16 rounded-full overflow-hidden flex items-center justify-center animate-[spin_6s_linear_infinite] 
+          ${!isPlaying ? "[animation-play-state:paused]" : ""}`}
       >
         <img
           src={currentTrack.image}
@@ -19,13 +21,17 @@ const Track = () => {
         />
       </div>
 
-      <div className="hidden lg:flex flex-col justify-center items-center w-44">
-        <div className="songbar-text w-[100%] truncate text-center text-white font-bold text-xs mb-2">
-          {isPlaying ? <WaveText text="Now playing..." /> : <span>Paused</span>}
+      <div className="hidden lg:flex flex-col gap-3 justify-center items-center w-44">
+        <div
+          className={`truncate text-center text-white font-bold text-xs" ${styles["songbar-text"]}`}
+        >
+          {isPlaying ? (
+            <WaveText text={`Now playing - ${currentTrack.title}`} />
+          ) : (
+            <span>Paused</span>
+          )}
         </div>
-        <div className="songbar-text w-[100%] truncate text-center text-gray-300">
-          <p>{currentTrack.title}</p>
-        </div>
+        <Progress />
       </div>
     </>
   );
