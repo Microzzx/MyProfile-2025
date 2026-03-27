@@ -7,6 +7,7 @@ import Track from "./SongbarComponents/Track";
 import Control from "./SongbarComponents/Control";
 import Volume from "./SongbarComponents/Volume";
 import Player from "./SongbarComponents/Player";
+import Progress from "./SongbarComponents/Progress";
 import data from "../../../public/data/myChart.json";
 
 import {
@@ -30,7 +31,6 @@ const SongBar = ({ className, ...rest }: Props) => {
 
   useEffect(() => {
     setSong(data.tracks);
-    console.log("setSong called", data.tracks);
   }, []);
 
   //auto play when song changed
@@ -44,8 +44,6 @@ const SongBar = ({ className, ...rest }: Props) => {
 
   const handleNextSong = () => {
     if (!songList) {
-      console.log(songList);
-      console.log("nooo");
       return;
     }
     setPlaying(false);
@@ -101,6 +99,7 @@ const SongBar = ({ className, ...rest }: Props) => {
               handlePrevSong={handlePrevSong}
             />
             <Volume />
+            <Progress />
           </div>
         </div>
       </div>
